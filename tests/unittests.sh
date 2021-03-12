@@ -1,16 +1,24 @@
 #!/bin/bash
 set -e
 
-# set pwd to script location
+# Set pwd to script location
 cd "$( dirname "$0" )"
 
-# Bootstrap of the environment 
-../bootstrap.sh
+# Bootstrap of the environment
+if [ ! -f "../.bootstrap" ]
+then
+  ../bootstrap.sh
+  touch ../.bootstrap
+fi
+
+# TODO: preserve state after calling bootstrap.sh
+# Workaround: activate virtual environment here
+source ../activate.sh
 
 cmake -S . -B cmake_build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE:STRING=xml
 cmake --build cmake_build
 
-# normal test
+# Normal test
 (cd cmake_build; ctest -V)
 # valgrind
 (cd cmake_build; ctest -D ExperimentalMemCheck)
