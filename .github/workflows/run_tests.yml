@@ -38,6 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip3 install virtualenv
+          pip3 install mbed-tools --upgrade
 
       - name: Run integration tests
         run: |

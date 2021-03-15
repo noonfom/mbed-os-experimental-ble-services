@@ -64,9 +64,10 @@ fi
 # Enter device folder for specified service
 cd TESTS/"$service"/device
 
-# Build Mbed BLE app
+# Build Mbed BLE app (old tools)
 mbed compile -t "$toolchain" -m "$target"
-# TODO: support new tools
-# mbed-tools compile -t GCC_ARM -m $target
+
+# Build Mbed BLE app (new tools)
+mbed-tools compile -t "$toolchain" -m "$target"
 
 exit 0
