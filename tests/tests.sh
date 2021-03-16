@@ -22,8 +22,7 @@ then
   touch ../.bootstrap
 fi
 
-# TODO: preserve state after calling bootstrap.sh
-# Workaround: activate virtual environment here
+# Activate virtual environment
 source ../activate.sh
 
 # Parse options

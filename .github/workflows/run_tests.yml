@@ -17,6 +17,7 @@ jobs:
           run: |
             apt-get update && apt-get install -y valgrind gcovr
             pip3 install virtualenv
+            pip3 install mbed-tools --upgrade
 
         - name: Run unit tests
           run: ./tests/unittests.sh
@@ -37,6 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          apt-get update && apt-get install -y valgrind gcovr
           pip3 install virtualenv
           pip3 install mbed-tools --upgrade
 

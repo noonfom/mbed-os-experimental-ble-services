@@ -71,7 +71,11 @@ async def client(client_allocator: ClientAllocator):
 ```
 
 ### Building and running integration tests
-1. Run the bootstrap process: `../../bootstrap.sh`
+1. Run the bootstrap script and activate the Python virtual environment: 
+   ```
+   ../../bootstrap.sh
+   source ../../activate.sh
+   ```
 
 1. Enter the device folder and compile and flash the BLE application onto the board:
 
@@ -82,15 +86,17 @@ async def client(client_allocator: ClientAllocator):
 
    where, `<service>` is the name of the test suite, e.g. `LinkLoss`
 
-1. Run the tests by passing the host folder to pytest:
+1. Run the tests by passing the host folder to pytest from inside the `TESTS` folder:
 
    ```
+   cd ../..
    python -m pytest <service>/host
    ```
 
    On some platforms, it is required to specify the target and port in additional arguments:
 
    ```
+   cd ../..
    python -m pytest <service>/host --platforms=<target> --serial_port=<port>
    ```
 

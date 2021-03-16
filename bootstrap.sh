@@ -6,11 +6,8 @@ windows() {
     [[ -n "$WINDIR" ]];
 }
 
-# Load symlink script, it sets the current directory to the root of
-# the repository and export its path in a ROOT variable
-source $(dirname $0)/symlink.sh
-
-cd "$ROOT"
+# Load symlink script and export path to ROOT variable
+source "$(dirname "$0")"/symlink.sh
 
 # Enter the test folder
 cd ./tests
@@ -47,18 +44,11 @@ else
   fi
 fi
 
-# Enter the virtual environment folder
-cd venv
-
 # Activate virtual environment
-if windows; then
-  source Scripts/activate
-else
-  source bin/activate
-fi
+source ../../activate.sh
 
 # Install mbed-os requirements
-pip install -r ../../mbed-os/requirements.txt
+pip install -r ../mbed-os/requirements.txt
 
 # Install testing requirements
-pip install -r ../requirements.txt
+pip install -r requirements.txt

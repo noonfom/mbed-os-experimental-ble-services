@@ -11,8 +11,7 @@ then
   touch ../.bootstrap
 fi
 
-# TODO: preserve state after calling bootstrap.sh
-# Workaround: activate virtual environment here
+# Activate virtual environment
 source ../activate.sh
 
 cmake -S . -B cmake_build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE:STRING=xml
