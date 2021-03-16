@@ -1,16 +1,11 @@
 #!/bin/bash
 set -e
 
-# Test if the script is running on windows
-windows() {
-    [[ -n "$WINDIR" ]];
-}
-
 # Load symlink script and export path to ROOT variable
 source "$(dirname "$0")"/symlink.sh
 
 # Enter the test folder
-cd ./tests
+cd "$ROOT"/tests
 
 # We need stubs from mbed-os
 if [ -d "mbed-os" ]
