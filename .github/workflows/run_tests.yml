@@ -20,7 +20,7 @@ jobs:
             pip3 install mbed-tools --upgrade
 
         - name: Run unit tests
-          run: ./tests/unittests.sh
+          run: ./tests/UNITTESTS/unittests.sh
 
         - name: Upload coverage result
           uses: actions/upload-artifact@v2

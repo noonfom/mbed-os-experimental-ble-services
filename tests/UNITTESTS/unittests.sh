@@ -15,8 +15,27 @@
 
 set -e
 
-# Reload .bashrc settings
-source ~/.bashrc
+# Enter repository root
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/../..
+
+# Bootstrap of the environment
+if [ ! -f "scripts/.bootstrap" ]
+then
+  ./scripts/bootstrap.sh
+  touch scripts/.bootstrap
+fi
 
 # Activate virtual environment
 source scripts/activate.sh
+
+cd tests/UNITTESTS
+
+cmake -S . -B cmake_build -GNinja -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE:STRING=xml
+cmake --build cmake_build
+
+# Normal test
+(cd cmake_build; ctest -V)
+# valgrind
+(cd cmake_build; ctest -D ExperimentalMemCheck)
+# gcov (only show coverage of services)
+gcovr --html=coverage.html  -f ".*cmake_build/services.*"

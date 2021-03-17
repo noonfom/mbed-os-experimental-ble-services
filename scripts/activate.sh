@@ -15,8 +15,17 @@
 
 set -e
 
-# Reload .bashrc settings
-source ~/.bashrc
+# Enter repository root
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"/..
+
+# Test if script is running on windows
+windows() {
+    [[ -n "$WINDIR" ]];
+}
 
 # Activate virtual environment
-source scripts/activate.sh
+if windows; then
+  source tests/TESTS/venv/Scripts/activate
+else
+  source tests/TESTS/venv/bin/activate
+fi
