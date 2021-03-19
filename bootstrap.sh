@@ -28,7 +28,7 @@ then
 else
     # git clone https://github.com/ARMmbed/mbed-os.git
     # Use feature-bluetooth-unit-test branch until merged to master
-    git clone --depth 1 https://github.com/ARMmbed/mbed-os.git -b feature-bluetooth-unit-test tests/mbed-os
+    git clone --depth 1 https://github.com/ARMmbed/mbed-os.git -b feature_unittest_refactor tests/mbed-os
 fi
 
 # Add symlinks
