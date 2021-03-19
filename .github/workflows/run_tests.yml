@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - github-ci-rebased-
   pull_request:
 jobs:
   run-unit-tests:
